@@ -18,7 +18,7 @@ class JobRequest(BaseModel):
     hours_old: int
     country_indeed: str
 
-@app.post("/")
+@app.post("/jobs")
 async def scrape_jobs_api(request: JobRequest):
     try:
         # Scrape jobs using provided parameters
