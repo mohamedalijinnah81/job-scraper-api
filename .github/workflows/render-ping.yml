@@ -1,0 +1,26 @@
+# Sends POST request to your Render API every 10 minutes to keep it alive
+name: Render Keep-Alive Ping
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'  # Runs every 10 minutes
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  post-api-request:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send POST request to API
+        run: |
+          curl -X POST https://job-scraper-api-8e48.onrender.com/jobs \
+          -H "Content-Type: application/json" \
+          -d '{
+            "site_name": ["indeed", "linkedin"],
+            "search_term": "software developer",
+            "google_search_term": "software engineer jobs near Chennai, Tamil Nadu since yesterday",
+            "location": "Chennai, Tamil Nadu",
+            "results_wanted": 5,
+            "hours_old": 72,
+            "country_indeed": "India"
+          }'
