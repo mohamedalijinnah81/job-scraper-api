@@ -1,9 +1,9 @@
-# Sends POST request to your Render API every 10 minutes to keep it alive
+# Sends POST request to your Render API everyday to keep it alive
 name: Render Keep-Alive Ping
 
 on:
   schedule:
-    - cron: '*/10 * * * *'  # Runs every 10 minutes
+    - cron: '0 0 * * *'  # Runs everyday midnight 00.00
   workflow_dispatch:  # Allows manual trigger
 
 jobs:
